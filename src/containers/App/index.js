@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+
 import FlexContainer from 'components/FlexContainer';
 import Search from 'components/Search';
 import TodoRow from 'components/TodoRow';
+import { mainBG } from 'global/colors';
 
 const TopMenuBar = styled.div`
   height: 46px;
@@ -21,7 +23,7 @@ const MainContentBody = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #f5f8fa;
+  background: ${mainBG};
 `;
 
 const MainContentWrapper = styled.div`

@@ -7,7 +7,6 @@ const TodoRowWrapper = styled.div`
   background: white;
   border: 1px solid #e6ecf0;
   border-radius: 5px;
-  cursor: pointer;
 `;
 
 const Header = styled.div`
@@ -16,7 +15,12 @@ const Header = styled.div`
 `;
 
 const Body = styled.div`
-  padding: ${padding()}
+  padding: ${padding()};
+  cursor: pointer;
+
+  &:hover {
+    background: grey;
+  }
 `;
 
 const TodoRow = ({ todo: { title, date, details }}) => {
