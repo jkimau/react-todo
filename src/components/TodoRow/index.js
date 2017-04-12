@@ -1,29 +1,30 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const padding = () => `15px`;
+import { mainBG, lightGreyBorder } from 'global/colors';
+
+const padding = `15px`;
 
 const TodoRowWrapper = styled.div`
   background: white;
-  border: 1px solid #e6ecf0;
-  border-radius: 5px;
+  border: 1px solid ${lightGreyBorder};
 `;
 
 const Header = styled.div`
   border-bottom: 1px solid #e6ecf0;
-  padding: ${padding()}
+  padding: ${padding}
 `;
 
 const Body = styled.div`
-  padding: ${padding()};
+  padding: ${padding};
   cursor: pointer;
 
   &:hover {
-    background: grey;
+    background: ${mainBG};
   }
 `;
 
-const TodoRow = ({ todo: { title, date, details }}) => {
+const TodoRow = ({ todo: { title, date, details } }) => {
   return (
     <TodoRowWrapper>
       <Header>
@@ -33,7 +34,7 @@ const TodoRow = ({ todo: { title, date, details }}) => {
         {details}
       </Body>
     </TodoRowWrapper>
-  )
+  );
 };
 
 export default TodoRow;

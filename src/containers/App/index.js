@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import FlexContainer from 'components/FlexContainer';
 import Search from 'components/Search';
 import TodoRow from 'components/TodoRow';
-import { mainBG } from 'global/colors';
+import { mainBG, lightGreyBorder } from 'global/colors';
 
 const TopMenuBar = styled.div`
   height: 46px;
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid ${lightGreyBorder};
 `;
 
 const Dummy = styled.div`
@@ -35,12 +35,14 @@ class App extends Component {
   constructor(props) {
     super(props);
 
-    this.todoMock = [{
-      id: 1,
-      title: 'test1',
-      date: '2017-4-20T00:00:00Z',
-      details: 'test details'
-    }];
+    this.todoMock = [
+      {
+        id: 1,
+        title: 'test1',
+        date: '2017-4-20T00:00:00Z',
+        details: 'test details'
+      }
+    ];
   }
 
   render() {
@@ -55,7 +57,7 @@ class App extends Component {
         </TopMenuBar>
         <MainContentBody>
           <MainContentWrapper>
-            {this.todoMock.map((todo) => <TodoRow key={todo.id} todo={todo} />)}
+            {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
           </MainContentWrapper>
           <p className="App-intro">
             To get started, edit <code>src/App.js</code> and save to reload.
