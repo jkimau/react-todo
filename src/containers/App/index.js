@@ -2,33 +2,50 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import FlexContainer from 'components/FlexContainer';
-import Search from 'components/Search';
+import SearchInput from 'components/Search';
 import TodoRow from 'components/TodoRow';
 import { mainBG, lightGreyBorder } from 'global/colors';
 
+const topMenuHeight = '46px';
+
 const TopMenuBar = styled.div`
-  height: 46px;
+  height: ${topMenuHeight};
   border-bottom: 1px solid ${lightGreyBorder};
 `;
 
 const Dummy = styled.div`
-  width: 30%;
+  width: 40%;
+  height: ${topMenuHeight};
 `;
 
 const MainTitle = styled.div`
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: ${topMenuHeight};
 `;
 
 const MainContentBody = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
+  padding-top: 40px;
   background: ${mainBG};
 `;
 
 const MainContentWrapper = styled.div`
   margin: 0 auto;
   width: 590px;
+`;
+
+const SearchInputWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 20px;
+  width: 33%;
+  height: ${topMenuHeight};
 `;
 
 class App extends Component {
@@ -64,16 +81,18 @@ class App extends Component {
           <FlexContainer direction="row">
             <Dummy />
             <MainTitle>Sick TODO</MainTitle>
-            <Search width="30%" test="test" />
+            <SearchInputWrapper>
+              <SearchInput />
+            </SearchInputWrapper>
           </FlexContainer>
         </TopMenuBar>
         <MainContentBody>
           <MainContentWrapper>
             {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
+            <p className="App-intro">
+              Testing...
+            </p>
           </MainContentWrapper>
-          <p className="App-intro">
-            To get started, edit <code>src/App.js</code> and save to reload.
-          </p>
         </MainContentBody>
       </div>
     );
