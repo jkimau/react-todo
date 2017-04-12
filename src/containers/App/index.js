@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import FlexContainer from 'components/FlexContainer';
+import Sidebar from 'components/Sidebar';
 import SearchInput from 'components/Search';
 import TodoRow from 'components/TodoRow';
 import { mainBG, lightGreyBorder } from 'global/colors';
@@ -34,7 +35,13 @@ const MainContentBody = styled.div`
   background: ${mainBG};
 `;
 
-const MainContentWrapper = styled.div`
+const ContentWrapper = styled.div`
+  width: 890px;
+  margin: 0 auto;
+`;
+
+const TodoListWarpper = styled.div`
+  float: right;
   margin: 0 auto;
   width: 590px;
 `;
@@ -78,21 +85,26 @@ class App extends Component {
     return (
       <div>
         <TopMenuBar>
-          <FlexContainer direction="row">
-            <Dummy />
-            <MainTitle>Sick TODO</MainTitle>
-            <SearchInputWrapper>
-              <SearchInput />
-            </SearchInputWrapper>
-          </FlexContainer>
+          <ContentWrapper>
+            <FlexContainer direction="row">
+              <Dummy />
+              <MainTitle>Sick TODO</MainTitle>
+              <SearchInputWrapper>
+                <SearchInput />
+              </SearchInputWrapper>
+            </FlexContainer>
+          </ContentWrapper>
         </TopMenuBar>
         <MainContentBody>
-          <MainContentWrapper>
-            {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
-            <p className="App-intro">
-              Testing...
-            </p>
-          </MainContentWrapper>
+          <ContentWrapper>
+            <Sidebar />
+            <TodoListWarpper>
+              {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
+              <p className="App-intro">
+                Testing...
+              </p>
+            </TodoListWarpper>
+          </ContentWrapper>
         </MainContentBody>
       </div>
     );
