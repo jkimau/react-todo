@@ -38,8 +38,20 @@ class App extends Component {
     this.todoMock = [
       {
         id: 1,
-        title: 'test1',
+        title: 'test 1',
         date: '2017-4-20T00:00:00Z',
+        details: 'test details'
+      },
+      {
+        id: 2,
+        title: 'test 2',
+        date: '2017-4-21T00:00:00Z',
+        details: 'test details'
+      },
+      {
+        id: 3,
+        title: 'test 3',
+        date: '2017-4-22T00:00:00Z',
         details: 'test details'
       }
     ];
