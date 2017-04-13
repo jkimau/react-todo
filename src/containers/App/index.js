@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import FlexContainer from 'components/FlexContainer';
 import Sidebar from 'components/Sidebar';
 import SearchInput from 'components/Search';
+import EditableDiv from 'components/EditableDiv';
 import TodoRow from 'components/TodoRow';
 import { mainBG, lightGreyBorder } from 'global/colors';
 
@@ -99,6 +100,7 @@ class App extends Component {
           <ContentWrapper>
             <Sidebar />
             <TodoListWarpper>
+              <EditableDiv />
               {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
               <p className="App-intro">
                 Testing...
