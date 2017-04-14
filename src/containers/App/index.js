@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import FlexContainer from 'components/FlexContainer';
 import Sidebar from 'components/Sidebar';
 import SearchInput from 'components/Search';
 import EditableDiv from 'components/EditableDiv';
 import TodoRow from 'components/TodoRow';
-import { mainBG, lightGreyBorder } from 'global/colors';
+import { mainBG, lightGreyBorder, todoRowBorder } from 'global/colors';
 
 const topMenuHeight = '46px';
 
 const TopMenuBar = styled.div`
+  display: flex;
   height: ${topMenuHeight};
   border-bottom: 1px solid ${lightGreyBorder};
 `;
@@ -28,7 +28,7 @@ const MainTitle = styled.div`
   height: ${topMenuHeight};
 `;
 
-const MainContentBody = styled.div`
+const ContentBody = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -36,15 +36,16 @@ const MainContentBody = styled.div`
   background: ${mainBG};
 `;
 
-const ContentWrapper = styled.div`
-  width: 890px;
+const ContentContainer = styled.div`
+  min-width: 400px;
+  max-width: 590px;
+  padding: 0 20px;
   margin: 0 auto;
+  box-sizing: border-box;
 `;
 
 const TodoListWarpper = styled.div`
-  float: right;
-  margin: 0 auto;
-  width: 590px;
+  border: 1px solid ${todoRowBorder};
 `;
 
 const SearchInputWrapper = styled.div`
@@ -64,19 +65,19 @@ class App extends Component {
       {
         id: 1,
         title: 'test 1',
-        date: '2017-4-20T00:00:00Z',
+        date: '2017-04-20T00:00:00Z',
         details: 'test details'
       },
       {
         id: 2,
         title: 'test 2',
-        date: '2017-4-21T00:00:00Z',
+        date: '2017-04-21T00:00:00Z',
         details: 'test details'
       },
       {
         id: 3,
         title: 'test 3',
-        date: '2017-4-22T00:00:00Z',
+        date: '2017-04-22T00:00:00Z',
         details: 'test details'
       }
     ];
@@ -86,28 +87,24 @@ class App extends Component {
     return (
       <div>
         <TopMenuBar>
-          <ContentWrapper>
-            <FlexContainer direction="row">
-              <Dummy />
-              <MainTitle>Sick TODO</MainTitle>
-              <SearchInputWrapper>
-                <SearchInput />
-              </SearchInputWrapper>
-            </FlexContainer>
-          </ContentWrapper>
+          <Dummy />
+          <MainTitle>Sick TODO</MainTitle>
+          <SearchInputWrapper>
+            <SearchInput />
+          </SearchInputWrapper>
         </TopMenuBar>
-        <MainContentBody>
-          <ContentWrapper>
-            <Sidebar />
+        <ContentBody>
+          {/* <Sidebar /> */}
+          <ContentContainer>
+            <EditableDiv />
             <TodoListWarpper>
-              <EditableDiv />
               {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
-              <p className="App-intro">
-                Testing...
-              </p>
             </TodoListWarpper>
-          </ContentWrapper>
-        </MainContentBody>
+            <p className="App-intro">
+              Testing...
+            </p>
+          </ContentContainer>
+        </ContentBody>
       </div>
     );
   }
