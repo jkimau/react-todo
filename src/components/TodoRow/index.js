@@ -12,6 +12,10 @@ const TodoRowWrapper = styled.div`
   &:last-child {
     border-bottom: none;
   }
+
+  &:hover {
+    background: ${mainBG};
+  }
 `;
 
 const Header = styled.div`
@@ -20,13 +24,7 @@ const Header = styled.div`
 
 const Body = styled.div`
   cursor: pointer;
-  height: 0;
-  padding: 0;
-  opacity: 0;
-
-  &:hover {
-    background: ${mainBG};
-  }
+  padding: ${padding}
 `;
 
 const OpenClose = styled.span`
