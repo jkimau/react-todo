@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-import Sidebar from 'components/Sidebar';
+// import Sidebar from 'components/Sidebar';
 import SearchInput from 'components/Search';
-import EditableDiv from 'components/EditableDiv';
+import AddTodoForm from 'components/AddTodoForm';
 import TodoRow from 'components/TodoRow';
 import { mainBG, lightGreyBorder, todoRowBorder } from 'global/colors';
 
@@ -96,7 +96,7 @@ class App extends Component {
         <ContentBody>
           {/* <Sidebar /> */}
           <ContentContainer>
-            <EditableDiv />
+            <AddTodoForm />
             <TodoListWarpper>
               {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
             </TodoListWarpper>

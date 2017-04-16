@@ -10,7 +10,7 @@ const EditableDivWrapper = styled.div`
   box-sizing: border-box;
 `;
 
-const EditableDivision = styled.div`
+const EditableDiv = styled.div`
   float: right;
   width: 508px;
   min-height: ${props => props.editingMode ? '60px' : 'auto'};
@@ -54,18 +54,15 @@ const Button = styled.button`
   }
 `;
 
-const DummyDiv = styled.div`
-
-`;
-
-export default class EditableDiv extends Component {
+export default class AddTodoForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { editingMode: false };
+    this.state = { editingMode: false, value: '' };
+
     this.enterEditingMode = this.enterEditingMode.bind(this);
     this.enterWaitingMode = this.enterWaitingMode.bind(this);
-    this.validateForm = this.validateForm.bind(this);
+    this.inputHandler = this.inputHandler.bind(this);
   }
 
   enterEditingMode() {
@@ -75,13 +72,13 @@ export default class EditableDiv extends Component {
   }
 
   enterWaitingMode() {
-    if (this.state.editingMode) {
+    if (this.state.editingMode && !this.state.value.length) {
       this.setState(prevState => ({ editingMode: false }));
     }
   }
 
-  validateForm() {
-    console.log('ad');
+  inputHandler(e) {
+    this.setState({ value: e.target.innerText });
   }
 
   render() {
@@ -89,21 +86,23 @@ export default class EditableDiv extends Component {
       <EditableDivWrapper>
         <form>
           <div>
-            <EditableDivision
+            <EditableDiv
               contentEditable={true}
               suppressContentEditableWarning={true}
+              editingMode={this.state.editingMode}
               onFocus={this.enterEditingMode}
               onBlur={this.enterWaitingMode}
-              editingMode={this.state.editingMode}
-              onKeyPress={this.validateForm}
-              data-placeholder="adsfafd">
-              {/* <DummyDiv><br/></DummyDiv> */}
-              <div><br/></div>
-            </EditableDivision>
+              onInput={this.inputHandler}
+              value={this.state.value}
+              data-placeholder="Enter your plan" />
             <HiddenTextArea />
           </div>
           <FormButtonsWrapper editingMode={this.state.editingMode}>
-            <Button editingMode={this.state.editingMode}>Add</Button>
+            <Button
+              editingMode={this.state.editingMode}
+              disabled={this.state.value.length > 0 ? 'false' : 'true'}>
+              Add
+            </Button>
           </FormButtonsWrapper>
         </form>
       </EditableDivWrapper>
