@@ -11,9 +11,10 @@ injectGlobal`
   [contenteditable=true]:not(:focus):before {
     content: attr(data-placeholder);
     display: block; /* For Firefox */
+    color: #ddd;
   }
 
-  [contenteditable=true]:not(:focus) > div:first-child {
+  [contenteditable=true]:not(:focus):not(:empty):before {
     display: none;
   }
 `;
