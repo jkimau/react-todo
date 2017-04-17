@@ -37,7 +37,7 @@ export default class TodoRow extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { detailOpen: false };
+    this.state = { detailOpen: true };
 
     this.toggleDetailsOpenStatus = this.toggleDetailsOpenStatus.bind(this);
   }
@@ -48,6 +48,9 @@ export default class TodoRow extends Component {
 
   render() {
     const { todo: { title, date, details, completed } } = this.props;
+    const detailsBodyClassArray = ['todo-details'];
+    detailsBodyClassArray.push(this.state.detailOpen ? 'open' : 'close');
+    const detailsBodyClassNames = detailsBodyClassArray.join(' ');
 
     return (
       <TodoRowWrapper completed={completed}>
@@ -59,7 +62,10 @@ export default class TodoRow extends Component {
             {this.state.detailOpen ? 'close' : 'open'}
           </OpenClose>
         </Header>
-        <Body>
+        <Body
+          className={detailsBodyClassNames}
+          detailOpen={this.state.detailOpen}
+        >
           {details}
         </Body>
       </TodoRowWrapper>
