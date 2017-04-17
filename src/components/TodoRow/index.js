@@ -8,6 +8,7 @@ const padding = `15px`;
 const TodoRowWrapper = styled.div`
   background: white;
   border-bottom: 1px solid ${todoRowBorder};
+  color: ${props => props.completed ? '#ccc' : 'inherit'};
 
   &:last-child {
     border-bottom: none;
@@ -46,10 +47,10 @@ export default class TodoRow extends Component {
   }
 
   render() {
-    const { todo: { title, date, details } } = this.props;
+    const { todo: { title, date, details, completed } } = this.props;
 
     return (
-      <TodoRowWrapper>
+      <TodoRowWrapper completed={completed}>
         <Header>
           <span>{title}</span>
           <span>{date}</span>
