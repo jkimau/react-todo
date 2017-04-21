@@ -61,43 +61,58 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.toggleRowMenuHandler = this.toggleRowMenuHandler.bind(this);
+
     this.todoMock = [
       {
         id: 1,
         title: 'test 1',
         date: '2017-04-20T00:00:00Z',
         details: 'test details',
-        completed: false
+        completed: false,
+        menuOpen: false
       },
       {
         id: 2,
         title: 'test 3',
         date: '2017-04-22T00:00:00Z',
         details: 'test details',
-        completed: true
+        completed: true,
+        menuOpen: false
       },
       {
         id: 3,
         title: 'test 2',
         date: '2017-04-21T00:00:00Z',
         details: 'test details',
-        completed: false
+        completed: false,
+        menuOpen: false
       },
       {
         id: 4,
         title: 'test 3',
         date: '2017-04-22T00:00:00Z',
         details: 'test details',
-        completed: false
+        completed: false,
+        menuOpen: false
       },
       {
         id: 5,
         title: 'test 3',
         date: '2017-04-22T00:00:00Z',
         details: 'test details',
-        completed: true
+        completed: true,
+        menuOpen: false
       }
     ];
+  }
+
+  toggleRowMenuHandler(id) {
+    const newState = this.todoMock.slice();
+    newState.forEach(todo => {
+      todo.menuOpen = todo.id === id ? !todo.menuOpen : false;
+    });
+    this.setState(prevState => newState);
   }
 
   render() {
@@ -115,7 +130,12 @@ class App extends Component {
           <ContentContainer>
             <AddTodoForm />
             <TodoListWarpper>
-              {this.todoMock.map(todo => <TodoRow key={todo.id} todo={todo} />)}
+              {this.todoMock.map(todo =>
+                <TodoRow
+                  key={todo.id}
+                  todo={todo}
+                  toggleRowMenuHandler={this.toggleRowMenuHandler}
+                />)}
             </TodoListWarpper>
             <p className="App-intro">
               Testing...
