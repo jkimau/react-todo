@@ -41,22 +41,24 @@ const TodoRowMenu = styled.ul`
   z-index: 100;
   margin: 0;
   width: 160px;
-  border: 1px solid #ddd;
   border-radius: 4px;
   list-style: none;
   padding-left: 0;
   background: white;
   color: #666;
+  overflow: hidden;
 
   &.slide-enter {
     opacity: 0;
     height: 0px;
+    border: none;
     transition: all 0.05s ease;
   }
 
   &.slide-leave {
     opacity: 1;
     height: ${props => props.totalHeight ? `${props.totalHeight}px` : '100px'};
+    border: 1px solid #ddd;
     transition: all 0.05s ease;
   }
 
