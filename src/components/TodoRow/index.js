@@ -89,8 +89,8 @@ export default class TodoRow extends Component {
   }
 
   toggleMenu(e) {
-    e.target.parentElement.getElementsByTagName('ul')[0].focus()
-    const { todo : { id }, toggleRowMenuHandler } = this.props;
+    e.target.parentElement.getElementsByTagName('ul')[0].focus();
+    const { todo: { id }, toggleRowMenuHandler } = this.props;
     toggleRowMenuHandler(id);
   }
 
@@ -109,30 +109,23 @@ export default class TodoRow extends Component {
       }
     } = this.props;
     return (
-      <TodoRowWrapper
-        completed={completed}
-      >
+      <TodoRowWrapper completed={completed}>
         <Header>
           <span>{title}</span>
           <span>{date}</span>
-          <OpenClose
-            onClick={this.toggleMenu}
-            className='todo-menu-trigger'
-          >
+          <OpenClose onClick={this.toggleMenu} className="todo-menu-trigger">
             {menuOpen ? 'close' : 'open'}
           </OpenClose>
           <ReactCSSTransitionGroup
             transitionName="slide"
             transitionEnterTimeout={0}
-            transitionLeaveTimeout={0}
-          >
+            transitionLeaveTimeout={0}>
             <TodoRowMenu
               tabIndex={-1}
               className={menuOpen ? 'slide-leave' : 'slide-enter'}
               onBlur={this.handleBlur}
               totalHeight={30 * 2}
-              listHeight={30}
-            >
+              listHeight={30}>
               <li>Mark complete</li>
               <li>Delete</li>
             </TodoRowMenu>
@@ -142,4 +135,4 @@ export default class TodoRow extends Component {
       </TodoRowWrapper>
     );
   }
-};
+}

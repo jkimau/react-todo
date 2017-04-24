@@ -15,7 +15,7 @@ const TopMenuBar = styled.div`
   border-bottom: 1px solid ${lightGreyBorder};
 `;
 
-const Dummy = styled.div`
+const Nav = styled.div`
   width: 40%;
   height: ${topMenuHeight};
 `;
@@ -128,7 +128,10 @@ class App extends Component {
     return (
       <div>
         <TopMenuBar>
-          <Dummy />
+          <Nav>
+            <span>List View</span>
+            <span>Block View</span>
+          </Nav>
           <MainTitle>Sick TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />
@@ -139,13 +142,14 @@ class App extends Component {
           <ContentContainer>
             <AddTodoForm />
             <TodoListWarpper>
-              {this.todoMock.map(todo =>
+              {this.todoMock.map(todo => (
                 <TodoRow
                   key={todo.id}
                   todo={todo}
                   toggleRowMenuHandler={this.toggleRowMenuHandler}
                   onBlurHandler={this.closeAllRowMenu}
-                />)}
+                />
+              ))}
             </TodoListWarpper>
             <p className="App-intro">
               Testing...
