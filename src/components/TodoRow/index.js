@@ -7,6 +7,7 @@ import { mainBG, todoRowBorder } from 'global/colors';
 const padding = `15px`;
 
 const TodoRowWrapper = styled.div`
+  position: relative;
   background: white;
   border-bottom: 1px solid ${todoRowBorder};
   color: ${props => props.completed ? '#ccc' : 'inherit'};
@@ -25,19 +26,19 @@ const Header = styled.div`
 `;
 
 const Body = styled.div`
-  padding: ${padding}
-  cursor: pointer;
+  padding: ${padding};
 `;
 
 const OpenClose = styled.span`
-  position: relative;
   float: right;
   cursor: pointer;
 `;
 
 const TodoRowMenu = styled.ul`
   position: absolute;
-  top: 25px;
+  top: 45px;
+  right: -100px;
+  z-index: 100;
   margin: 0;
   width: 160px;
   border: 1px solid #ddd;
@@ -46,14 +47,6 @@ const TodoRowMenu = styled.ul`
   padding-left: 0;
   background: white;
   color: #666;
-
-  li {
-    height: ${props => props.listHeight ? `${props.listHeight}px` : 'auto'};
-    padding: 6px;
-    box-sizing: border-box;
-    text-align: center;
-    font-size: 14px;
-  }
 
   &.slide-enter {
     opacity: 0;
@@ -66,17 +59,41 @@ const TodoRowMenu = styled.ul`
     height: ${props => props.totalHeight ? `${props.totalHeight}px` : '100px'};
     transition: all 0.05s ease;
   }
+
+  &:focus {
+    outline: none;
+  }
+
+  li {
+    height: ${props => props.listHeight ? `${props.listHeight}px` : 'auto'};
+    padding: 6px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background: #2FC2EF;
+      color: white;
+    }
+  }
 `;
 
 export default class TodoRow extends Component {
   constructor(props) {
     super(props);
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
-  toggleMenu() {
+  toggleMenu(e) {
+    e.target.parentElement.getElementsByTagName('ul')[0].focus()
     const { todo : { id }, toggleRowMenuHandler } = this.props;
     toggleRowMenuHandler(id);
+  }
+
+  handleBlur() {
+    this.props.onBlurHandler();
   }
 
   render() {
@@ -90,28 +107,34 @@ export default class TodoRow extends Component {
       }
     } = this.props;
     return (
-      <TodoRowWrapper completed={completed}>
+      <TodoRowWrapper
+        completed={completed}
+      >
         <Header>
           <span>{title}</span>
           <span>{date}</span>
           <OpenClose
-            onClick={this.toggleMenu}>
+            onClick={this.toggleMenu}
+            className='todo-menu-trigger'
+          >
             {menuOpen ? 'close' : 'open'}
-            <ReactCSSTransitionGroup
-              transitionName="slide"
-              transitionEnterTimeout={0}
-              transitionLeaveTimeout={0}
-            >
-              <TodoRowMenu
-                totalHeight={30 * 2}
-                listHeight={30}
-                className={menuOpen ? 'slide-leave' : 'slide-enter'}
-              >
-                <li>Mark complete</li>
-                <li>Delete</li>
-              </TodoRowMenu>
-            </ReactCSSTransitionGroup>
           </OpenClose>
+          <ReactCSSTransitionGroup
+            transitionName="slide"
+            transitionEnterTimeout={0}
+            transitionLeaveTimeout={0}
+          >
+            <TodoRowMenu
+              tabIndex={-1}
+              className={menuOpen ? 'slide-leave' : 'slide-enter'}
+              onBlur={this.handleBlur}
+              totalHeight={30 * 2}
+              listHeight={30}
+            >
+              <li>Mark complete</li>
+              <li>Delete</li>
+            </TodoRowMenu>
+          </ReactCSSTransitionGroup>
         </Header>
         <Body>{details}</Body>
       </TodoRowWrapper>

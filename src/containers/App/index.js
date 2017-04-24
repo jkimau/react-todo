@@ -62,6 +62,7 @@ class App extends Component {
     super(props);
 
     this.toggleRowMenuHandler = this.toggleRowMenuHandler.bind(this);
+    this.closeAllRowMenu = this.closeAllRowMenu.bind(this);
 
     this.todoMock = [
       {
@@ -115,6 +116,14 @@ class App extends Component {
     this.setState(prevState => newState);
   }
 
+  closeAllRowMenu() {
+    const newState = this.todoMock.slice();
+    newState.forEach(todo => {
+      todo.menuOpen = false;
+    });
+    this.setState(prevState => newState);
+  }
+
   render() {
     return (
       <div>
@@ -135,6 +144,7 @@ class App extends Component {
                   key={todo.id}
                   todo={todo}
                   toggleRowMenuHandler={this.toggleRowMenuHandler}
+                  onBlurHandler={this.closeAllRowMenu}
                 />)}
             </TodoListWarpper>
             <p className="App-intro">
