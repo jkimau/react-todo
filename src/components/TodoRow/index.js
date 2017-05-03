@@ -86,11 +86,16 @@ export default class TodoRow extends Component {
     super(props);
 
     this.toggleMenu = this.toggleMenu.bind(this);
+    this.stopPropagateEvent = this.stopPropagateEvent.bind(this);
   }
 
   toggleMenu(e) {
     const { todo: { id }, toggleRowMenuHandler } = this.props;
     toggleRowMenuHandler(id);
+  }
+
+  stopPropagateEvent(e) {
+    e.stopPropagation();
   }
 
   render() {
@@ -116,6 +121,7 @@ export default class TodoRow extends Component {
             transitionEnterTimeout={0}
             transitionLeaveTimeout={0}>
             <TodoRowMenu
+              onClick={this.stopPropagateEvent}
               className={menuOpen ? 'slide-leave' : 'slide-enter'}
               totalHeight={30 * 2}
               listHeight={30}>

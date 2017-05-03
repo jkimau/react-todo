@@ -53,6 +53,7 @@ export default class MainContainer extends Component {
     newTodos.forEach(todo => {
       todo.menuOpen = false;
     });
+
     this.setState(prevState => ({
       ...prevState,
       todos: newTodos
