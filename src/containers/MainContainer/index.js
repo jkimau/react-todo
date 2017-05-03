@@ -60,6 +60,10 @@ export default class MainContainer extends Component {
     }));
   }
 
+  shouldComponentUpdate(nextState) {
+    return this.state.viewMode !== nextState.viewMode;
+  }
+
   render() {
     const { viewMode } = this.props;
     console.log('view mode: ', viewMode);
