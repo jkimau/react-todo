@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// import Sidebar from 'components/Sidebar';
 import SearchInput from 'components/Search';
-import AddTodoForm from 'components/AddTodoForm';
-import TodoRow from 'components/TodoRow';
-import { mainBG, lightGreyBorder, todoRowBorder } from 'global/colors';
+import MainContainer from 'containers/MainContainer';
+import { lightGreyBorder } from 'global/colors';
 
 const topMenuHeight = '46px';
 
@@ -28,26 +26,6 @@ const MainTitle = styled.div`
   height: ${topMenuHeight};
 `;
 
-const ContentBody = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  padding-top: 40px;
-  background: ${mainBG};
-`;
-
-const ContentContainer = styled.div`
-  min-width: 400px;
-  max-width: 590px;
-  padding: 0 20px;
-  margin: 0 auto;
-  box-sizing: border-box;
-`;
-
-const TodoListWarpper = styled.div`
-  border: 1px solid ${todoRowBorder};
-`;
-
 const SearchInputWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -60,9 +38,6 @@ const SearchInputWrapper = styled.div`
 class App extends Component {
   constructor(props) {
     super(props);
-
-    this.toggleRowMenuHandler = this.toggleRowMenuHandler.bind(this);
-    this.closeAllRowMenu = this.closeAllRowMenu.bind(this);
 
     this.todoMock = [
       {
@@ -108,22 +83,6 @@ class App extends Component {
     ];
   }
 
-  toggleRowMenuHandler(id) {
-    const newState = this.todoMock.slice();
-    newState.forEach(todo => {
-      todo.menuOpen = todo.id === id ? !todo.menuOpen : false;
-    });
-    this.setState(prevState => newState);
-  }
-
-  closeAllRowMenu() {
-    const newState = this.todoMock.slice();
-    newState.forEach(todo => {
-      todo.menuOpen = false;
-    });
-    this.setState(prevState => newState);
-  }
-
   render() {
     return (
       <div>
@@ -137,25 +96,7 @@ class App extends Component {
             <SearchInput />
           </SearchInputWrapper>
         </TopMenuBar>
-        <ContentBody>
-          {/* <Sidebar /> */}
-          <ContentContainer>
-            <AddTodoForm />
-            <TodoListWarpper>
-              {this.todoMock.map(todo => (
-                <TodoRow
-                  key={todo.id}
-                  todo={todo}
-                  toggleRowMenuHandler={this.toggleRowMenuHandler}
-                  onBlurHandler={this.closeAllRowMenu}
-                />
-              ))}
-            </TodoListWarpper>
-            <p className="App-intro">
-              Testing...
-            </p>
-          </ContentContainer>
-        </ContentBody>
+        <MainContainer todos={this.todoMock} />
       </div>
     );
   }
