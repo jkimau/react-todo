@@ -48,7 +48,7 @@ export default class MainContainer extends Component {
   }
 
   closeAllRowMenu(e) {
-    console.log('close: ', e.currentTarget);
+    e.stopPropagation();
     const newTodos = this.state.todos.slice();
     newTodos.forEach(todo => {
       todo.menuOpen = false;
@@ -61,7 +61,8 @@ export default class MainContainer extends Component {
   }
 
   render() {
-    // const { mainViewMode } = this.props;
+    const { viewMode } = this.props;
+    console.log('view mode: ', viewMode);
 
     return (
       <MainContainerWrapper>

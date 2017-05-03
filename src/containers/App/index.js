@@ -36,6 +36,7 @@ class App extends Component {
 
     this.closeAllRowMenu = this.closeAllRowMenu.bind(this);
     this.documentClickHandler = this.documentClickHandler.bind(this);
+    this.switchViewMode = this.switchViewMode.bind(this);
 
     this.todoMock = [
       {
@@ -80,7 +81,7 @@ class App extends Component {
       }
     ];
 
-    this.state = { todos: this.todoMock };
+    this.state = { todos: this.todoMock, viewMode: 'list' };
   }
 
   documentClickHandler(e) {
@@ -100,17 +101,28 @@ class App extends Component {
     }))
   }
 
+  switchViewMode(mode) {
+    this.setState(prevState => ({
+      ...prevState,
+      viewMode: mode
+    }));
+  }
+
   render() {
     return (
       <div onClick={this.documentClickHandler}>
         <TopMenuBar>
-          <TopNavigation />
+          <TopNavigation
+            viewMode={this.state.viewMode}
+            switchViewMode={this.switchViewMode} />
           <MainTitle>Sick TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />
           </SearchInputWrapper>
         </TopMenuBar>
-        <MainContainer todos={this.state.todos} />
+        <MainContainer
+          todos={this.state.todos}
+          viewMode={this.state.viewMode} />
       </div>
     );
   }
