@@ -39,6 +39,9 @@ class App extends Component {
   constructor(props) {
     super(props);
 
+    this.closeAllRowMenu = this.closeAllRowMenu.bind(this);
+    this.documentClickHandler = this.documentClickHandler.bind(this);
+
     this.todoMock = [
       {
         id: 1,
@@ -81,11 +84,30 @@ class App extends Component {
         menuOpen: false
       }
     ];
+
+    this.state = { todos: this.todoMock };
+  }
+
+  documentClickHandler(e) {
+    const hasClickedOnTodoMenuTrigger = e.target.classList.contains('todo-menu-trigger');
+    if (!hasClickedOnTodoMenuTrigger) {
+      this.closeAllRowMenu();
+    }
+  }
+
+  closeAllRowMenu() {
+    const newTodos = this.state.todos.slice();
+    newTodos.forEach(todo => { todo.menuOpen = false });
+
+    this.setState(prevState => ({
+      ...prevState,
+      todos: newTodos
+    }))
   }
 
   render() {
     return (
-      <div>
+      <div onClick={this.documentClickHandler}>
         <TopMenuBar>
           <Nav>
             <span>List View</span>
@@ -96,7 +118,7 @@ class App extends Component {
             <SearchInput />
           </SearchInputWrapper>
         </TopMenuBar>
-        <MainContainer todos={this.todoMock} />
+        <MainContainer todos={this.state.todos} />
       </div>
     );
   }

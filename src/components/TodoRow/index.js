@@ -84,18 +84,13 @@ const TodoRowMenu = styled.ul`
 export default class TodoRow extends Component {
   constructor(props) {
     super(props);
+
     this.toggleMenu = this.toggleMenu.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
   }
 
   toggleMenu(e) {
-    e.target.parentElement.getElementsByTagName('ul')[0].focus();
     const { todo: { id }, toggleRowMenuHandler } = this.props;
     toggleRowMenuHandler(id);
-  }
-
-  handleBlur() {
-    this.props.onBlurHandler();
   }
 
   render() {
@@ -121,9 +116,7 @@ export default class TodoRow extends Component {
             transitionEnterTimeout={0}
             transitionLeaveTimeout={0}>
             <TodoRowMenu
-              tabIndex={-1}
               className={menuOpen ? 'slide-leave' : 'slide-enter'}
-              onBlur={this.handleBlur}
               totalHeight={30 * 2}
               listHeight={30}>
               <li>Mark complete</li>
