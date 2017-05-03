@@ -37,9 +37,10 @@ export default class MainContainer extends Component {
   }
 
   toggleRowMenuHandler(id) {
-    const index = this.state.todos.findIndex(todo => (todo.id === id));
     const newTodos = this.state.todos.slice();
-    newTodos[index].menuOpen = !newTodos[index].menuOpen;
+    newTodos.forEach(todo => {
+      todo.menuOpen = todo.id === id ? !todo.menuOpen : false;
+    });
 
     this.setState(prevState => ({
       ...prevState,
@@ -50,18 +51,12 @@ export default class MainContainer extends Component {
   closeAllRowMenu(e) {
     e.stopPropagation();
     const newTodos = this.state.todos.slice();
-    newTodos.forEach(todo => {
-      todo.menuOpen = false;
-    });
+    newTodos.forEach(todo => { todo.menuOpen = false });
 
     this.setState(prevState => ({
       ...prevState,
       todos: newTodos
     }));
-  }
-
-  shouldComponentUpdate(nextState) {
-    return this.state.viewMode !== nextState.viewMode;
   }
 
   render() {
