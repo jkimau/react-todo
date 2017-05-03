@@ -1,21 +1,16 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
+import TopNavigation from 'components/TopNavigation';
 import SearchInput from 'components/Search';
 import MainContainer from 'containers/MainContainer';
 import { lightGreyBorder } from 'global/colors';
-
-const topMenuHeight = '46px';
+import { topMenuHeight } from 'global/variables';
 
 const TopMenuBar = styled.div`
   display: flex;
   height: ${topMenuHeight};
   border-bottom: 1px solid ${lightGreyBorder};
-`;
-
-const Nav = styled.div`
-  width: 40%;
-  height: ${topMenuHeight};
 `;
 
 const MainTitle = styled.div`
@@ -109,10 +104,7 @@ class App extends Component {
     return (
       <div onClick={this.documentClickHandler}>
         <TopMenuBar>
-          <Nav>
-            <span>List View</span>
-            <span>Block View</span>
-          </Nav>
+          <TopNavigation />
           <MainTitle>Sick TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />
