@@ -61,13 +61,11 @@ export default class MainContainer extends Component {
 
   render() {
     const { viewMode } = this.props;
-    console.log('view mode: ', viewMode);
 
     return (
-      <MainContainerWrapper>
+      <MainContainerWrapper className={viewMode === 'block' ? 'block' : 'list'}>
         {/* <Sidebar /> */}
         <ContentContainer>
-          <AddTodoForm />
           <TodoListWarpper>
             {this.state.todos.map(todo => (
               <TodoRow
