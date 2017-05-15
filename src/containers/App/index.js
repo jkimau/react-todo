@@ -92,6 +92,8 @@ class App extends Component {
   }
 
   closeAllRowMenu() {
+    if (this.state.todos.filter(todo => todo.menuOpen).length === 0) { return; }
+
     const newTodos = this.state.todos.slice();
     newTodos.forEach(todo => { todo.menuOpen = false });
 
