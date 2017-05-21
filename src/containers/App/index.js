@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { BrowserRouter as Router, Route, hashHistory } from 'react-router-dom'
 
 import TopNavigation from 'components/TopNavigation';
 import SearchInput from 'components/Search';
@@ -30,7 +31,7 @@ const SearchInputWrapper = styled.div`
   height: ${topMenuHeight};
 `;
 
-class App extends Component {
+class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -127,6 +128,27 @@ class App extends Component {
           viewMode={this.state.viewMode} />
       </div>
     );
+  }
+}
+
+class Test extends Component {
+  render() {
+    return (
+      <h1>Test</h1>
+    )
+  }
+}
+
+class App extends Component {
+  render() {
+    return (
+      <Router history={hashHistory}>
+        <div>
+          <Route exact path='/' component={Home} />
+          <Route path='/test' component={Test} />
+        </div>
+      </Router>
+    )
   }
 }
 

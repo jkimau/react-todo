@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
-// import Sidebar from 'components/Sidebar';
-import AddTodoForm from 'components/AddTodoForm';
 import TodoRow from 'components/TodoRow';
 import { mainBG, todoRowBorder } from 'global/colors';
 
