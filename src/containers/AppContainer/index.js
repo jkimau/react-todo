@@ -43,7 +43,7 @@ class AppContainer extends Component {
           <TopNavigation
             viewMode={this.state.viewMode}
             switchViewMode={this.switchViewMode} />
-          <MainTitle>Sick TODO</MainTitle>
+          <MainTitle>TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />
           </SearchInputWrapper>
