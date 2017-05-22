@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
-  Route,
-  Redirect
+  Route
 } from 'react-router-dom';
 
+import AppContainer from 'containers/AppContainer';
 import ListView from 'containers/ListView';
 import CalendarView from 'containers/CalendarView';
 
@@ -13,7 +13,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" render={() => (<Redirect to="/list"/>)}/>
+          <Route path="/" component={AppContainer}/>
+          <Route exact path="/" component={ListView}/>
           <Route path="/list" component={ListView}/>
           <Route path="/calendar" component={CalendarView}/>
         </div>
