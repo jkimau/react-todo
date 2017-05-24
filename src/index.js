@@ -8,7 +8,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
 import combinedReducer from 'reducers';
-import AppContainer from 'containers/AppContainer';
+import DefaultLayout from 'containers/DefaultLayout';
 import ListView from 'containers/ListView';
 import CalendarView from 'containers/CalendarView';
 import 'global/style';
@@ -19,7 +19,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-        <Route path="/" component={AppContainer}/>
+        <Route path="/" component={DefaultLayout}/>
         <Route exact path="/" component={ListView}/>
         <Route path="/list" component={ListView}/>
         <Route path="/calendar" component={CalendarView}/>
