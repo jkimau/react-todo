@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import styled from 'styled-components';
 
 import { mainBG, todoRowBorder } from 'global/colors';
@@ -90,8 +89,8 @@ export default class TodoRow extends Component {
   }
 
   openTodoMenu(e) {
-    const { todo: { id }, openTodoMenuHandler } = this.props;
-    openTodoMenuHandler(id);
+    const { todo: { id }, clickTodoMenuHandler } = this.props;
+    clickTodoMenuHandler(id);
   }
 
   stopPropagateEvent(e) {
@@ -116,19 +115,14 @@ export default class TodoRow extends Component {
           <OpenClose onClick={this.openTodoMenu} className="todo-menu-trigger">
             {menuOpen ? 'close' : 'open'}
           </OpenClose>
-          <ReactCSSTransitionGroup
-            transitionName="slide"
-            transitionEnterTimeout={0}
-            transitionLeaveTimeout={0}>
-            <TodoRowMenu
-              onClick={this.stopPropagateEvent}
-              className={menuOpen ? 'slide-leave' : 'slide-enter'}
-              totalHeight={30 * 2}
-              listHeight={30}>
-              <li>Mark complete</li>
-              <li>Delete</li>
-            </TodoRowMenu>
-          </ReactCSSTransitionGroup>
+          <TodoRowMenu
+            onClick={this.stopPropagateEvent}
+            className={menuOpen ? 'slide-leave' : 'slide-enter'}
+            totalHeight={30 * 2}
+            listHeight={30}>
+            <li>Mark complete</li>
+            <li>Delete</li>
+          </TodoRowMenu>
         </Header>
         <Body>{details}</Body>
       </TodoRowWrapper>
