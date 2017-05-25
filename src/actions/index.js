@@ -17,3 +17,9 @@ export const toggleTodoMenu = (todoId) => {
     }
   }
 };
+
+export const closeAllTodoMenus = () => {
+  return {
+    type: 'CLOSE_ALL_TODO_MENUS'
+  }
+}

@@ -27,19 +27,6 @@ const TodoListWarpper = styled.div`
 `;
 
 class ListView extends Component {
-
-  closeAllRowMenu(e) {
-    e.stopPropagation();
-    // const newTodos = this.state.todos.slice();
-    // newTodos.forEach(todo => { todo.menuOpen = false });
-    //
-    // this.setState(prevState => ({
-    //   ...prevState,
-    //   todos: newTodos
-    // }));
-    console.log('blur');
-  }
-
   render() {
     return (
       <ListViewWrapper>
@@ -51,7 +38,6 @@ class ListView extends Component {
                 key={todo.id}
                 todo={todo}
                 clickTodoMenuHandler={this.props.toggleTodoMenuHandler}
-                onBlurHandler={this.closeAllRowMenu}
               />
             ))}
           </TodoListWarpper>

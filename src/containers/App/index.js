@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 
+import { closeAllTodoMenus } from 'actions';
 import TopNavigation from 'components/TopNavigation';
 import SearchInput from 'components/Search';
 import ListView from 'containers/ListView';
@@ -39,8 +41,11 @@ class App extends Component {
     this.documentClickHandler = this.documentClickHandler.bind(this);
   }
 
-  documentClickHandler() {
-    console.log('click');
+  documentClickHandler(e) {
+    const classNames = e.target.className.split(' ');
+    if (!classNames.includes('todo-menu-trigger')) {
+      this.props.closeAllTodoMenus();
+    }
   }
 
   render() {
@@ -62,4 +67,11 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+  closeAllTodoMenus: () => { dispatch(closeAllTodoMenus()) }
+})
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(App);
