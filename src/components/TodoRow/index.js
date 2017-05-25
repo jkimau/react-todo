@@ -84,11 +84,11 @@ export default class TodoRow extends Component {
   constructor(props) {
     super(props);
 
-    this.openTodoMenu = this.openTodoMenu.bind(this);
+    this.toggleTodoMenu = this.toggleTodoMenu.bind(this);
     this.stopPropagateEvent = this.stopPropagateEvent.bind(this);
   }
 
-  openTodoMenu(e) {
+  toggleTodoMenu(e) {
     const { todo: { id }, clickTodoMenuHandler } = this.props;
     clickTodoMenuHandler(id);
   }
@@ -112,7 +112,7 @@ export default class TodoRow extends Component {
         <Header>
           <span>{title}</span>
           <span>{date}</span>
-          <OpenClose onClick={this.openTodoMenu} className="todo-menu-trigger">
+          <OpenClose onClick={this.toggleTodoMenu} className="todo-menu-trigger">
             {menuOpen ? 'close' : 'open'}
           </OpenClose>
           <TodoRowMenu
