@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 
 import TopNavigation from 'components/TopNavigation';
 import SearchInput from 'components/Search';
+import ListView from 'containers/ListView';
+import CalendarView from 'containers/CalendarView';
 import { lightGreyBorder } from 'global/colors';
 import { topMenuHeight } from 'global/variables';
 
@@ -29,31 +32,34 @@ const SearchInputWrapper = styled.div`
   height: ${topMenuHeight};
 `;
 
-class DefaultLayout extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { viewMode: 'list' };
+    this.documentClickHandler = this.documentClickHandler.bind(this);
+  }
+
+  documentClickHandler() {
+    console.log('click');
   }
 
   render() {
     return (
       <div onClick={this.documentClickHandler}>
         <TopMenuBar>
-          <TopNavigation
-            viewMode={this.state.viewMode}
-            switchViewMode={this.switchViewMode} />
+          <TopNavigation />
           <MainTitle>TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />
           </SearchInputWrapper>
         </TopMenuBar>
-        <div>
-          {this.props.children}
-        </div>
+
+        <Route exact path="/" component={ListView}/>
+        <Route path="/list" component={ListView}/>
+        <Route path="/calendar" component={CalendarView}/>
       </div>
     )
   }
 }
 
-export default DefaultLayout;
+export default App;

@@ -1,16 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {
-  BrowserRouter as Router,
-  Route
+  BrowserRouter as Router
 } from 'react-router-dom';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
 import combinedReducer from 'reducers';
-import DefaultLayout from 'containers/DefaultLayout';
-import ListView from 'containers/ListView';
-import CalendarView from 'containers/CalendarView';
+import App from 'containers/App';
 import 'global/style';
 
 let store = createStore(combinedReducer);
@@ -18,12 +15,7 @@ let store = createStore(combinedReducer);
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <div>
-        <Route path="/" component={DefaultLayout}/>
-        <Route exact path="/" component={ListView}/>
-        <Route path="/list" component={ListView}/>
-        <Route path="/calendar" component={CalendarView}/>
-      </div>
+      <App />
     </Router>
   </Provider>,
   document.getElementById('root')
