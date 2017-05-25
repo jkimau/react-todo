@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 
-class ListView extends Component {
+class CalendarView extends Component {
   render() {
+    console.log('props: ', this.props);
     return (
       <h1>Calendar view page</h1>
     );
   }
 }
 
-export default ListView;
+const mapStateToProps = ({ todos }) => {
+  return todos;
+};
+
+export default connect(mapStateToProps)(CalendarView);

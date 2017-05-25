@@ -49,6 +49,13 @@ const todos = (state = initialState, action) => {
     case 'ADD_TODO':
       const todo = action.data;
       return { ...state, todo };
+    case 'OPEN_TODO_MENU':
+      const todoId = action.data.id;
+      const newTodos = [...state.todos];
+      newTodos.forEach(todo => {
+        todo.menuOpen = todo.id === todoId;
+      });
+      return { ...state, todos: newTodos };
     default:
       return state;
   }
