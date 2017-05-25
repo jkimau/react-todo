@@ -8,3 +8,12 @@ export const addTodo = (todo) => {
     }
   }
 };
+
+export const toggleTodoMenu = (todoId) => {
+  return {
+    type: 'TOGGLE_TODO_MENU',
+    data: {
+      id: todoId
+    }
+  }
+};

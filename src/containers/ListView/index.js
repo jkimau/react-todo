@@ -4,8 +4,9 @@ import styled from 'styled-components';
 
 import TodoRow from 'components/TodoRow';
 import { mainBG, todoRowBorder } from 'global/colors';
+import { toggleTodoMenu } from 'actions'
 
-const MainContainerWrapper = styled.div`
+const ListViewWrapper = styled.div`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -27,32 +28,20 @@ const TodoListWarpper = styled.div`
 
 class ListView extends Component {
 
-  toggleRowMenuHandler(id) {
-    const newTodos = this.state.todos.slice();
-    newTodos.forEach(todo => {
-      todo.menuOpen = todo.id === id ? !todo.menuOpen : false;
-    });
-
-    this.setState(prevState => ({
-      ...prevState,
-      todos: newTodos
-    }));
-  }
-
-  closeAllRowMenu(e) {
-    e.stopPropagation();
-    const newTodos = this.state.todos.slice();
-    newTodos.forEach(todo => { todo.menuOpen = false });
-
-    this.setState(prevState => ({
-      ...prevState,
-      todos: newTodos
-    }));
-  }
+  // closeAllRowMenu(e) {
+  //   e.stopPropagation();
+  //   const newTodos = this.state.todos.slice();
+  //   newTodos.forEach(todo => { todo.menuOpen = false });
+  //
+  //   this.setState(prevState => ({
+  //     ...prevState,
+  //     todos: newTodos
+  //   }));
+  // }
 
   render() {
     return (
-      <MainContainerWrapper>
+      <ListViewWrapper>
         <h1>List view page</h1>
         <ContentContainer>
           <TodoListWarpper>
@@ -60,7 +49,7 @@ class ListView extends Component {
               <TodoRow
                 key={todo.id}
                 todo={todo}
-                toggleRowMenuHandler={this.toggleRowMenuHandler}
+                openTodoMenuHandler={this.props.toggleTodoMenuHandler}
                 onBlurHandler={this.closeAllRowMenu}
               />
             ))}
@@ -69,7 +58,7 @@ class ListView extends Component {
             Testing...
           </p>
         </ContentContainer>
-      </MainContainerWrapper>
+      </ListViewWrapper>
     );
   }
 }
@@ -78,4 +67,13 @@ const mapStateToProps = ({ todos }) => {
   return todos;
 };
 
-export default connect(mapStateToProps)(ListView);
+const mapDispatchToProps = (dispatch) => ({
+  toggleTodoMenuHandler: (id) => {
+    dispatch(toggleTodoMenu(id))
+  }
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ListView);
