@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
@@ -71,7 +72,6 @@ const mapDispatchToProps = dispatch => ({
   closeAllTodoMenus: () => { dispatch(closeAllTodoMenus()) }
 })
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(App);
+export default withRouter(
+  connect(null, mapDispatchToProps)(App)
+);
