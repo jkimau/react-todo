@@ -1,5 +1,13 @@
 import initialTodos from 'initialTodos';
 
+const fetchTodoPromise = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(initialTodos);
+    }, 1000);
+  });
+};
+
 export const addTodo = (todo) => {
   return {
     type: 'ADD_TODO',
@@ -32,3 +40,24 @@ export const getTodos = () => {
     data: initialTodos
   }
 };
+
+export const fetchingTodos = () => {
+  return { type: 'FETCHING_TODOS' }
+}
+
+export const todosFetched = (todos) => {
+  return {
+    type: 'TODOS_FETCHED',
+    data: todos
+  }
+}
+
+export const fetchTodos = () => {
+  return dispatch => {
+    dispatch(fetchingTodos());
+
+    fetchTodoPromise().then(response => {
+      dispatch(todosFetched(response))
+    });
+  }
+}

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
-import { getTodos, toggleTodoMenu } from 'actions'
+import { fetchTodos, toggleTodoMenu } from 'actions'
 
 const ListViewWrapper = styled.div`
   height: 100%;
@@ -26,22 +26,16 @@ const TodoListWarpper = styled.div`
 `;
 
 class ListView extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = { todos: null };
-  }
-
   componentDidMount() {
-    this.props.getTodosAsync().then((response) => {
-      this.setState({ todos: response.data });
-    });
+    if (!this.props.isFetching) {
+      this.props.fetchTodos();
+    }
   }
 
   render() {
     const todoListWrapper = () => (
       <TodoListWarpper>
-        {this.state.todos.map(todo => (
+        {this.props.todos.map(todo => (
           <TodoRow
             key={todo.id}
             todo={todo}
@@ -57,28 +51,20 @@ class ListView extends Component {
       <ListViewWrapper>
         <h1>List view page</h1>
         <ContentContainer>
-          {this.state.todos ? todoListWrapper() : loading()}
+          {this.props.todos.length > 0 ? todoListWrapper() : loading()}
         </ContentContainer>
       </ListViewWrapper>
     );
   }
 }
 
-const mapStateToProps = ({ todos }) => {
-  return todos;
+const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
+  return { isFetching, todos }
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  getTodosAsync: () => {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(dispatch(getTodos()));
-      }, 1000);
-    });
-  },
-  toggleTodoMenuHandler: (id) => {
-    dispatch(toggleTodoMenu(id))
-  }
+  fetchTodos: () => dispatch(fetchTodos()),
+  toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id))
 });
 
 export default connect(
