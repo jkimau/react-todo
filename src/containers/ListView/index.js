@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 
 import TodoRow from 'components/TodoRow';
+import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
 import { getTodos, toggleTodoMenu } from 'actions'
 
@@ -50,9 +51,7 @@ class ListView extends Component {
       </TodoListWarpper>
     );
 
-    const loading = () => (
-      <div>Loading...</div>
-    );
+    const loading = () => (<Loading/>);
 
     return (
       <ListViewWrapper>
