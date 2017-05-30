@@ -9,9 +9,13 @@ const todos = (state = initialState, action) => {
   const newTodos = [...state.todos];
 
   switch (action.type) {
+    case 'GET_TODOS':
+      return { ...state, todos: action.data};
+
     case 'ADD_TODO':
       const todo = action.data;
-      return { ...state, todo };
+      newTodos.push(todo);
+      return { ...state, todos: newTodos };
 
     case 'TOGGLE_TODO_MENU':
       const todoId = action.data.id;

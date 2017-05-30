@@ -24,4 +24,11 @@ export const closeAllTodoMenus = () => {
   return {
     type: 'CLOSE_ALL_TODO_MENUS'
   }
-}
+};
+
+export const getTodos = () => {
+  return {
+    type: 'GET_TODOS',
+    data: initialTodos
+  }
+};
