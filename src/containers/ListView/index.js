@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
-import { fetchTodos, toggleTodoMenu } from 'actions'
+import { fetchTodos, toggleTodoMenu } from 'actions';
 
 const ListViewWrapper = styled.div`
   height: 100%;
@@ -62,10 +62,12 @@ const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
   return { isFetching, todos }
 };
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchTodos: () => dispatch(fetchTodos()),
-  toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id))
-});
+const mapDispatchToProps = dispatch => {
+  return {
+    fetchTodos: () => dispatch(fetchTodos()),
+    toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id))
+  }
+};
 
 export default connect(
   mapStateToProps,
