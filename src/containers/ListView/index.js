@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import TodoRow from 'components/TodoRow';
 import { mainBG, todoRowBorder } from 'global/colors';
-import { toggleTodoMenu } from 'actions'
+import { getTodos, toggleTodoMenu } from 'actions'
 
 const ListViewWrapper = styled.div`
   position: absolute;
@@ -27,6 +27,14 @@ const TodoListWarpper = styled.div`
 `;
 
 class ListView extends Component {
+  componentDidMount() {
+    console.log('did mount');
+    this.props.getTodosAsync().then((response) => {
+      console.log('res: ', response);
+      this.setState({ todos: response });
+    });
+  }
+
   render() {
     return (
       <ListViewWrapper>
@@ -41,9 +49,6 @@ class ListView extends Component {
               />
             ))}
           </TodoListWarpper>
-          <p className="App-intro">
-            Testing...
-          </p>
         </ContentContainer>
       </ListViewWrapper>
     );
@@ -55,6 +60,14 @@ const mapStateToProps = ({ todos }) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
+  getTodosAsync: () => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log('asdfadsf');
+        resolve(dispatch(getTodos()));
+      }, 1000);
+    });
+  },
   toggleTodoMenuHandler: (id) => {
     dispatch(toggleTodoMenu(id))
   }
