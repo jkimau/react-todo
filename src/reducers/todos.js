@@ -32,6 +32,9 @@ const todoState = (state = initialState, action) => {
       });
       return { ...state, todos: newTodos };
 
+    case 'SET_VIEW_MODE':
+      return { ...state, viewMode: action.data };
+
     default:
       return state;
   }

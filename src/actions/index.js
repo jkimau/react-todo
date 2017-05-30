@@ -61,3 +61,10 @@ export const fetchTodos = () => {
     });
   }
 }
+
+export const setViewMode = (mode) => {
+  return {
+    type: 'SET_VIEW_MODE',
+    data: mode
+  }
+}
