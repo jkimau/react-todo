@@ -27,28 +27,40 @@ const TodoListWarpper = styled.div`
 `;
 
 class ListView extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { todos: null };
+  }
+
   componentDidMount() {
-    console.log('did mount');
     this.props.getTodosAsync().then((response) => {
-      console.log('res: ', response);
-      this.setState({ todos: response });
+      this.setState({ todos: response.data });
     });
   }
 
   render() {
+    const todoListWrapper = () => (
+      <TodoListWarpper>
+        {this.state.todos.map(todo => (
+          <TodoRow
+            key={todo.id}
+            todo={todo}
+            clickTodoMenuHandler={this.props.toggleTodoMenuHandler}
+          />
+        ))}
+      </TodoListWarpper>
+    );
+
+    const loading = () => (
+      <div>Loading...</div>
+    );
+
     return (
       <ListViewWrapper>
         <h1>List view page</h1>
         <ContentContainer>
-          <TodoListWarpper>
-            {this.props.todos.map(todo => (
-              <TodoRow
-                key={todo.id}
-                todo={todo}
-                clickTodoMenuHandler={this.props.toggleTodoMenuHandler}
-              />
-            ))}
-          </TodoListWarpper>
+          {this.state.todos ? todoListWrapper() : loading()}
         </ContentContainer>
       </ListViewWrapper>
     );
@@ -63,7 +75,6 @@ const mapDispatchToProps = (dispatch) => ({
   getTodosAsync: () => {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log('asdfadsf');
         resolve(dispatch(getTodos()));
       }, 1000);
     });
