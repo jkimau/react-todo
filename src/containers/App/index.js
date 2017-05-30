@@ -50,7 +50,7 @@ class App extends Component {
 
   render() {
     return (
-      <div onClick={this.documentClickHandler}>
+      <div className="app-container" onClick={this.documentClickHandler}>
         <TopMenuBar>
           <TopNavigation />
           <MainTitle>TODO</MainTitle>

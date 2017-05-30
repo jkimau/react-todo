@@ -7,8 +7,6 @@ import { mainBG, todoRowBorder } from 'global/colors';
 import { getTodos, toggleTodoMenu } from 'actions'
 
 const ListViewWrapper = styled.div`
-  position: absolute;
-  width: 100%;
   height: 100%;
   padding-top: 40px;
   background: ${mainBG};

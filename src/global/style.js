@@ -6,6 +6,14 @@ injectGlobal`
     margin: 0;
     padding: 0;
     font-family: sans-serif;
+    position: relative;
+  }
+
+  html,
+  body,
+  .root,
+  .app-container {
+    height: 100%;
   }
 
   [contenteditable=true]:not(:focus):before {
