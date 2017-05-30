@@ -53,7 +53,7 @@ class App extends Component {
     return (
       <div className="app-container" onClick={this.documentClickHandler}>
         <TopMenuBar>
-          <TopNavigation />
+          <TopNavigation viewMode={this.props.viewMode}/>
           <MainTitle>TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />
@@ -68,10 +68,14 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = ({ todoState: { viewMode }}) => {
+  return { viewMode }
+};
+
 const mapDispatchToProps = dispatch => ({
   closeAllTodoMenus: () => { dispatch(closeAllTodoMenus()) }
 })
 
 export default withRouter(
-  connect(null, mapDispatchToProps)(App)
+  connect(mapStateToProps, mapDispatchToProps)(App)
 );
