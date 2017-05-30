@@ -1,11 +1,9 @@
-import initialTodos from 'initialTodos';
-
 const initialState = {
   viewMode: 'list',
-  todos: initialTodos
+  todos: []
 };
 
-const todos = (state = initialState, action) => {
+const todoState = (state = initialState, action) => {
   const newTodos = [...state.todos];
 
   switch (action.type) {
@@ -35,4 +33,4 @@ const todos = (state = initialState, action) => {
   }
 };
 
-export default todos;
+export default todoState;
