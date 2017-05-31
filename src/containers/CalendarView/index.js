@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { fetchTodos, toggleTodoMenu } from 'actions';
+import { fetchTodos, toggleTodoMenu, setViewMode } from 'actions';
 
 class CalendarView extends Component {
   componentDidMount() {
@@ -11,7 +11,9 @@ class CalendarView extends Component {
   }
 
   shouldComponentUpdate(nextState) {
-    return this.props.todos.length !== nextState.todos.length;
+    const hasSameTodos = this.props.todos.length === nextState.todos.length;
+    const hasSameViewMode = this.props.viewMode === nextState.viewMode;
+    return !hasSameTodos && !hasSameViewMode;
   }
 
   render() {
@@ -28,7 +30,8 @@ const mapStateToProps = ({ todoState: { isFetching, todos } }) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTodos: () => dispatch(fetchTodos()),
-    toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id))
+    toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id)),
+    setViewMode: (mode) => dispatch(setViewMode(mode))
   }
 }
 

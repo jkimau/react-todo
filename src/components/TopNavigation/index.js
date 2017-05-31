@@ -16,13 +16,43 @@ const List = styled.li`
 `;
 
 export default class TopNavigation extends Component {
+  constructor(props) {
+    super(props);
+
+    this.changeViewMode = this.changeViewMode.bind(this);
+  }
+
+  changeViewMode(mode) {
+    this.props.changeViewModeHandler(mode);
+  }
+
   render() {
-    const linkStyle = { textDecoration: 'none', color: 'black' };
+    const linkStyle = { textDecoration: 'none' };
     return (
       <Nav>
         <ul>
-          <List><Link style={linkStyle} to='/list'>List view</Link></List>
-          <List><Link style={linkStyle} to='/calendar'>Calendar view</Link></List>
+          <List>
+            <Link
+              style={{
+                ...linkStyle,
+                color: this.props.viewMode === 'list' ? 'blue' : 'black'
+              }}
+              to='/list'
+              onClick={() => {this.changeViewMode('list')}}>
+              List view
+            </Link>
+          </List>
+          <List>
+            <Link
+              style={{
+                ...linkStyle,
+                color: this.props.viewMode === 'calendar' ? 'blue' : 'black'
+              }}
+              to='/calendar'
+              onClick={() => {this.changeViewMode('calendar')}}>
+              Calendar view
+            </Link>
+          </List>
         </ul>
       </Nav>
     )

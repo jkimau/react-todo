@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
-import { fetchTodos, toggleTodoMenu } from 'actions';
+import { fetchTodos, toggleTodoMenu, setViewMode } from 'actions';
 
 const ListViewWrapper = styled.div`
   height: 100%;
@@ -30,6 +30,11 @@ class ListView extends Component {
     if (!this.props.isFetching) {
       this.props.fetchTodos();
     }
+  }
+
+  shouldComponentUpdate(nextState) {
+    const hasSameTodos = this.props.todos.length === nextState.todos.length;
+    return !hasSameTodos;
   }
 
   render() {
@@ -65,7 +70,8 @@ const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTodos: () => dispatch(fetchTodos()),
-    toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id))
+    toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id)),
+    setViewMode: (mode) => dispatch(setViewMode(mode))
   }
 };
 

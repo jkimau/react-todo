@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { closeAllTodoMenus } from 'actions';
+import { closeAllTodoMenus, setViewMode } from 'actions';
 import TopNavigation from 'components/TopNavigation';
 import SearchInput from 'components/Search';
 import ListView from 'containers/ListView';
@@ -40,6 +40,11 @@ class App extends Component {
     super(props);
 
     this.documentClickHandler = this.documentClickHandler.bind(this);
+    this.changeViewModeHandler = this.changeViewModeHandler.bind(this);
+  }
+
+  changeViewModeHandler(mode) {
+    this.props.setViewMode(mode)
   }
 
   documentClickHandler(e) {
@@ -53,7 +58,10 @@ class App extends Component {
     return (
       <div className="app-container" onClick={this.documentClickHandler}>
         <TopMenuBar>
-          <TopNavigation viewMode={this.props.viewMode}/>
+          <TopNavigation
+            viewMode={this.props.viewMode}
+            changeViewModeHandler={this.changeViewModeHandler}
+          />
           <MainTitle>TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />
@@ -72,9 +80,12 @@ const mapStateToProps = ({ todoState: { viewMode }}) => {
   return { viewMode }
 };
 
-const mapDispatchToProps = dispatch => ({
-  closeAllTodoMenus: () => { dispatch(closeAllTodoMenus()) }
-})
+const mapDispatchToProps = dispatch => {
+  return {
+    closeAllTodoMenus: () => { dispatch(closeAllTodoMenus()) },
+    setViewMode: (mode) => { dispatch(setViewMode(mode)) }
+  }
+};
 
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(App)
