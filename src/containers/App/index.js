@@ -41,6 +41,9 @@ class App extends Component {
 
     this.documentClickHandler = this.documentClickHandler.bind(this);
     this.changeViewModeHandler = this.changeViewModeHandler.bind(this);
+    this.setInitialViewMode = this.setInitialViewMode.bind(this);
+
+    this.setInitialViewMode();
   }
 
   changeViewModeHandler(mode) {
@@ -52,6 +55,12 @@ class App extends Component {
     if (!classNames.includes('todo-menu-trigger')) {
       this.props.closeAllTodoMenus();
     }
+  }
+
+  setInitialViewMode() {
+    const path = this.props.location.pathname;
+    const mode = path.replace(/\//, '');
+    this.props.setViewMode(mode)
   }
 
   render() {
