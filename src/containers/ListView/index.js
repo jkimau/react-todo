@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import TodoRow from 'components/TodoRow';
+import TodoRow from 'containers/TodoRow';
 import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
-import { fetchTodos, toggleTodoMenu, setViewMode } from 'actions';
+import { fetchTodos, setViewMode } from 'actions';
 
 const ListViewWrapper = styled.div`
   height: 100%;
@@ -33,7 +33,7 @@ class ListView extends Component {
   }
 
   shouldComponentUpdate(nextState) {
-    const hasSameTodos = this.props.todos.length === nextState.todos.length;
+    const hasSameTodos = this.props.todos === nextState.todos;
     return !hasSameTodos;
   }
 
@@ -44,7 +44,6 @@ class ListView extends Component {
           <TodoRow
             key={todo.id}
             todo={todo}
-            clickTodoMenuHandler={this.props.toggleTodoMenuHandler}
           />
         ))}
       </TodoListWarpper>
@@ -70,7 +69,6 @@ const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTodos: () => dispatch(fetchTodos()),
-    toggleTodoMenuHandler: (id) => dispatch(toggleTodoMenu(id)),
     setViewMode: (mode) => dispatch(setViewMode(mode))
   }
 };
