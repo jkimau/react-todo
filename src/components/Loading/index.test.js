@@ -1,15 +1,22 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import renderer from 'react-test-renderer';
+import { shallow } from 'enzyme';
 import Loading from '../Loading';
 
 describe('Loading', () => {
-  let compiledComponent;
+  const compileComponent = () => {
+    return shallow(<Loading/>);
+  }
 
-  beforeEach(() => {
-    compiledComponent = mount(<Loading/>);
+  test('<Loading/> snapshot', () => {
+    const tree = renderer.create(
+      <Loading/>
+    ).toJSON();
+    expect(tree).toMatchSnapshot();
   });
 
   test('test', () => {
-    expect(compiledComponent.find('div').text()).toEqual('Loading...');
+    const compiledComponent = compileComponent();
+    expect(compiledComponent.dive().find('div').text()).toEqual('Loading...');
   });
 });

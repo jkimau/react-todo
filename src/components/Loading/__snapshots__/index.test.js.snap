@@ -1,0 +1,6 @@
+exports[`Loading <Loading/> snapshot 1`] = `
+<div
+  className="khmhuD">
+  Loading...
+</div>
+`;
