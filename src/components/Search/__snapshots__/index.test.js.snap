@@ -1,0 +1,6 @@
+exports[`<Search/> component snapshot 1`] = `
+<input
+  className="kTPKMA"
+  placeholder="Please enter keywords"
+  type="text" />
+`;

@@ -3,20 +3,21 @@ import renderer from 'react-test-renderer';
 import { shallow } from 'enzyme';
 import Loading from '../Loading';
 
-describe('Loading', () => {
+describe('<Loading/> component', () => {
   const compileComponent = () => {
     return shallow(<Loading/>);
   }
 
-  test('<Loading/> snapshot', () => {
+  test('snapshot', () => {
     const tree = renderer.create(
       <Loading/>
     ).toJSON();
     expect(tree).toMatchSnapshot();
   });
 
-  test('test', () => {
+  test('should render Loading... text', () => {
     const compiledComponent = compileComponent();
+
     expect(compiledComponent.dive().find('div').text()).toEqual('Loading...');
   });
 });

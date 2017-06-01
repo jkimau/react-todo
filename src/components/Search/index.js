@@ -15,5 +15,5 @@ const Input = styled.input`
 `;
 
 export default () => {
-  return <Input type="text" placeholder="Please enter keywordss" />
+  return <Input type="text" placeholder="Please enter keywords" />
 };
