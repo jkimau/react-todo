@@ -85,7 +85,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
-    }
+    },
+    "modulePaths": ["<rootDir>/node_modules/", "<rootDir>/src/"]
   },
   "babel": {
     "presets": [
