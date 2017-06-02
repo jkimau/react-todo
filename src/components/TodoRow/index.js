@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { mainBG, todoRowBorder } from '../../global/colors';
-import { toggleTodoMenu } from '../../actions';
+import { mainBG, todoRowBorder } from 'global/colors';
 
 const padding = `15px`;
 
@@ -82,7 +80,7 @@ const TodoRowMenu = styled.ul`
   }
 `;
 
-class TodoRow extends Component {
+export default class TodoRow extends Component {
   constructor(props) {
     super(props);
 
@@ -91,8 +89,7 @@ class TodoRow extends Component {
   }
 
   toggleTodoMenu() {
-    const { todo: { id } } = this.props;
-    this.props.toggleTodoMenu(id);
+    this.props.toggleTodoMenu(this.props.todo.id);
   }
 
   stopPropagateEvent(e) {
@@ -109,6 +106,7 @@ class TodoRow extends Component {
         menuOpen
       }
     } = this.props;
+
     return (
       <TodoRowWrapper completed={completed}>
         <Header>
@@ -119,7 +117,7 @@ class TodoRow extends Component {
           </OpenClose>
           <TodoRowMenu
             onClick={this.stopPropagateEvent}
-            className={menuOpen ? 'slide-leave' : 'slide-enter'}
+            className={`todo-row-menu ${menuOpen ? 'slide-leave' : 'slide-enter'}`}
             totalHeight={30 * 2}
             listHeight={30}>
             <li>Mark complete</li>
@@ -131,18 +129,3 @@ class TodoRow extends Component {
     );
   }
 }
-
-const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
-  return { isFetching, todos }
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    toggleTodoMenu: (id) => dispatch(toggleTodoMenu(id))
-  }
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(TodoRow);

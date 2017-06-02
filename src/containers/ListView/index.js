@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import TodoRow from 'containers/TodoRow';
+import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
-import { fetchTodos, setViewMode } from 'actions';
+import { fetchTodos, setViewMode, toggleTodoMenu } from 'actions';
 
 const ListViewWrapper = styled.div`
   height: 100%;
@@ -44,6 +44,7 @@ class ListView extends Component {
           <TodoRow
             key={todo.id}
             todo={todo}
+            toggleTodoMenu={this.props.toggleTodoMenu}
           />
         ))}
       </TodoListWarpper>
@@ -55,21 +56,27 @@ class ListView extends Component {
       <ListViewWrapper>
         <h1>List view page</h1>
         <ContentContainer>
-          {this.props.todos.length > 0 ? todoListWrapper() : loading()}
+          {
+            this.props.todos
+            && this.props.todos.length > 0
+            ? todoListWrapper()
+            : loading()
+          }
         </ContentContainer>
       </ListViewWrapper>
     );
   }
 }
 
-const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
-  return { isFetching, todos }
+const mapStateToProps = ({ todoState: { isFetching, fetched, todos }}) => {
+  return { isFetching, fetched, todos }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     fetchTodos: () => dispatch(fetchTodos()),
-    setViewMode: (mode) => dispatch(setViewMode(mode))
+    setViewMode: (mode) => dispatch(setViewMode(mode)),
+    toggleTodoMenu: (id) => dispatch(toggleTodoMenu(id))
   }
 };
 

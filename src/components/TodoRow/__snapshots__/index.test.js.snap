@@ -1,0 +1,71 @@
+exports[`<TodoRow/>  -- snapshot snapshot with menuOpen close 1`] = `
+<div
+  className="ihdFiv">
+  <div
+    className="Eszii">
+    <span
+      className="todo-row-header">
+      test title
+    </span>
+    <span
+      className="todo-row-date">
+      2017-06-01T00:00:00Z
+    </span>
+    <span
+      className="todo-menu-trigger bPMTRm"
+      onClick={[Function]}>
+      close
+    </span>
+    <ul
+      className="todo-row-menu slide-leave gHZgXS"
+      onClick={[Function]}>
+      <li>
+        Mark complete
+      </li>
+      <li>
+        Delete
+      </li>
+    </ul>
+  </div>
+  <div
+    className="todo-row-details hAJdRI">
+    test details
+  </div>
+</div>
+`;
+
+exports[`<TodoRow/>  -- snapshot snapshot with menuOpen true 1`] = `
+<div
+  className="ihdFiv">
+  <div
+    className="Eszii">
+    <span
+      className="todo-row-header">
+      test title
+    </span>
+    <span
+      className="todo-row-date">
+      2017-06-01T00:00:00Z
+    </span>
+    <span
+      className="todo-menu-trigger bPMTRm"
+      onClick={[Function]}>
+      open
+    </span>
+    <ul
+      className="todo-row-menu slide-enter gHZgXS"
+      onClick={[Function]}>
+      <li>
+        Mark complete
+      </li>
+      <li>
+        Delete
+      </li>
+    </ul>
+  </div>
+  <div
+    className="todo-row-details hAJdRI">
+    test details
+  </div>
+</div>
+`;

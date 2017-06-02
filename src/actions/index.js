@@ -1,4 +1,4 @@
-import initialTodos from 'initialTodos';
+import initialTodos from '../initialTodos';
 
 const fetchTodoPromise = () => {
   return new Promise((resolve, reject) => {
