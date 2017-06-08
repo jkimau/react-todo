@@ -1,0 +1,63 @@
+exports[`<ListView/> snapshot with no todos 1`] = `
+<div
+  className="cISMcw">
+  <h1>
+    List view page
+  </h1>
+  <div
+    className="bxhHXa">
+    <div
+      className="khmhuD">
+      Loading...
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<ListView/> snapshot with todos 1`] = `
+<div
+  className="cISMcw">
+  <h1>
+    List view page
+  </h1>
+  <div
+    className="bxhHXa">
+    <div
+      className="imZCSj">
+      <div
+        className="delrmX">
+        <div
+          className="Eszii">
+          <span
+            className="todo-row-header">
+            test 1
+          </span>
+          <span
+            className="todo-row-date">
+            2017-04-20T00:00:00Z
+          </span>
+          <span
+            className="todo-menu-trigger bPMTRm"
+            onClick={[Function]}>
+            open
+          </span>
+          <ul
+            className="todo-row-menu slide-enter gHZgXS"
+            onClick={[Function]}>
+            <li>
+              Mark complete
+            </li>
+            <li>
+              Delete
+            </li>
+          </ul>
+        </div>
+        <div
+          className="todo-row-details hAJdRI">
+          test details
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

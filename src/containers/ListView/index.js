@@ -25,7 +25,7 @@ const TodoListWarpper = styled.div`
   border: 1px solid ${todoRowBorder};
 `;
 
-class ListView extends Component {
+export class ListView extends Component {
   componentDidMount() {
     if (!this.props.isFetching) {
       this.props.fetchTodos();
@@ -33,6 +33,7 @@ class ListView extends Component {
   }
 
   shouldComponentUpdate(nextState) {
+    console.log('=======');
     const hasSameTodos = this.props.todos === nextState.todos;
     return !hasSameTodos;
   }
@@ -68,8 +69,8 @@ class ListView extends Component {
   }
 }
 
-const mapStateToProps = ({ todoState: { isFetching, fetched, todos }}) => {
-  return { isFetching, fetched, todos }
+const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
+  return { isFetching, todos }
 };
 
 const mapDispatchToProps = dispatch => {
