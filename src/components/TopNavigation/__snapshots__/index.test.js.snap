@@ -1,0 +1,75 @@
+exports[`<TopNavigation/> snapshot - calendar viewMode 1`] = `
+<nav
+  className="fBEMhB">
+  <ul>
+    <li
+      className="gxaXoS">
+      <a
+        href="/list"
+        id="list-nav-link"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }>
+        List view
+      </a>
+    </li>
+    <li
+      className="gxaXoS">
+      <a
+        href="/calendar"
+        id="calendar-nav-link"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "blue",
+            "textDecoration": "none",
+          }
+        }>
+        Calendar view
+      </a>
+    </li>
+  </ul>
+</nav>
+`;
+
+exports[`<TopNavigation/> snapshot - list viewMode 1`] = `
+<nav
+  className="fBEMhB">
+  <ul>
+    <li
+      className="gxaXoS">
+      <a
+        href="/list"
+        id="list-nav-link"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "blue",
+            "textDecoration": "none",
+          }
+        }>
+        List view
+      </a>
+    </li>
+    <li
+      className="gxaXoS">
+      <a
+        href="/calendar"
+        id="calendar-nav-link"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "black",
+            "textDecoration": "none",
+          }
+        }>
+        Calendar view
+      </a>
+    </li>
+  </ul>
+</nav>
+`;

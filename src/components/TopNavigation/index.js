@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { topMenuHeight } from 'global/variables';
 
-const Nav = styled.div`
+const Nav = styled.nav`
   width: 40%;
   height: ${topMenuHeight};
 `;
@@ -33,6 +33,7 @@ export default class TopNavigation extends Component {
         <ul>
           <List>
             <Link
+              id="list-nav-link"
               style={{
                 ...linkStyle,
                 color: this.props.viewMode === 'list' ? 'blue' : 'black'
@@ -44,6 +45,7 @@ export default class TopNavigation extends Component {
           </List>
           <List>
             <Link
+              id="calendar-nav-link"
               style={{
                 ...linkStyle,
                 color: this.props.viewMode === 'calendar' ? 'blue' : 'black'
