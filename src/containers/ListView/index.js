@@ -33,7 +33,6 @@ export class ListView extends Component {
   }
 
   shouldComponentUpdate(nextState) {
-    console.log('=======');
     const hasSameTodos = this.props.todos === nextState.todos;
     return !hasSameTodos;
   }
