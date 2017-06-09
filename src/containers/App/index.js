@@ -35,7 +35,7 @@ const SearchInputWrapper = styled.div`
   height: ${topMenuHeight};
 `;
 
-class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
 
