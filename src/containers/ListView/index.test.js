@@ -111,4 +111,13 @@ describe('<ListView/>', () => {
 
     expect(wrapper.instance().props.fetchTodos).not.toHaveBeenCalled();
   });
+
+  test('should not call shouldComponentUpdate()', () => {
+    ListView.prototype.shouldComponentUpdate = jest.fn().mockReturnValueOnce(true);
+
+    const wrapper = mount(<ListView {...defaultProps}/>);
+    wrapper.update();
+
+    expect(ListView.prototype.shouldComponentUpdate).toHaveBeenCalled();
+  });
 });
