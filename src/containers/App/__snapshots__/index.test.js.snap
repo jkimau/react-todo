@@ -1,0 +1,111 @@
+exports[`<App/> snapshot - list view mode 1`] = `
+<div
+  className="app-container"
+  onClick={[Function]}>
+  <div
+    className="jfwhKk">
+    <nav
+      className="fBEMhB">
+      <ul>
+        <li
+          className="gxaXoS">
+          <a
+            href="/list"
+            id="list-nav-link"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "blue",
+                "textDecoration": "none",
+              }
+            }>
+            List view
+          </a>
+        </li>
+        <li
+          className="gxaXoS">
+          <a
+            href="/calendar"
+            id="calendar-nav-link"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }>
+            Calendar view
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      className="bYIAja">
+      TODO
+    </div>
+    <div
+      className="dXtVax">
+      <input
+        className="kTPKMA"
+        placeholder="Please enter keywords"
+        type="text" />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<App/> snapshot - list view mode 2`] = `
+<div
+  className="app-container"
+  onClick={[Function]}>
+  <div
+    className="jfwhKk">
+    <nav
+      className="fBEMhB">
+      <ul>
+        <li
+          className="gxaXoS">
+          <a
+            href="/list"
+            id="list-nav-link"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "black",
+                "textDecoration": "none",
+              }
+            }>
+            List view
+          </a>
+        </li>
+        <li
+          className="gxaXoS">
+          <a
+            href="/calendar"
+            id="calendar-nav-link"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "blue",
+                "textDecoration": "none",
+              }
+            }>
+            Calendar view
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <div
+      className="bYIAja">
+      TODO
+    </div>
+    <div
+      className="dXtVax">
+      <input
+        className="kTPKMA"
+        placeholder="Please enter keywords"
+        type="text" />
+    </div>
+  </div>
+</div>
+`;
