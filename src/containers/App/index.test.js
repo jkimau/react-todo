@@ -50,19 +50,13 @@ describe('<App/>', () => {
   });
 
   test('should call setInitialViewMode() on load', () => {
+    const setInitialViewModeClone = App.prototype.setInitialViewMode;
     App.prototype.setInitialViewMode = jest.fn();
     compileComponent();
 
     expect(App.prototype.setInitialViewMode).toHaveBeenCalled();
+    App.prototype.setInitialViewMode = setInitialViewModeClone;
   });
-
-  // test('should call setInitialViewMode() on load', () => {
-  //   const spy = jest.spyOn(App.prototype.setInitialViewMode);
-  //   compileComponent();
-  //
-  //   expect(App.prototype.setInitialViewMode).toHaveBeenCalled();
-  //   spy.mockRestore();
-  // });
 
   test('should call changeViewModeHandler()', () => {
     App.prototype.changeViewModeHandler = jest.fn();
@@ -100,17 +94,17 @@ describe('<App/>', () => {
     expect(wrapper.instance().props.closeAllTodoMenus).toHaveBeenCalled();
   });
 
-  // test('should run setInitialViewMode() properly', () => {
-  //   const newProps = Object.assign(
-  //     {},
-  //     defaultProps,
-  //     { location: { pathname: '/list' } }
-  //   );
-  //   const wrapper = compileComponent(newProps);
-  //   wrapper.instance().setInitialViewMode();
-  //
-  //   expect(wrapper.instance().props.setViewMode).toHaveBeenCalledWith('list');
-  // });
+  test('should run setInitialViewMode() properly', () => {
+    const newProps = Object.assign(
+      {},
+      defaultProps,
+      { location: { pathname: '/list' } }
+    );
+    const wrapper = compileComponent(newProps);
+    wrapper.instance().setInitialViewMode();
+
+    expect(wrapper.instance().props.setViewMode).toHaveBeenCalledWith('list');
+  });
 
   test('should render <Route/> properly', () => {
     const wrapper = compileComponent();
