@@ -125,6 +125,10 @@ module.exports = {
       },
       // Process JS with Babel.
       {
+        test: /\.ts(x)$/,
+        loader: 'ts-loader'
+      },
+      {
         test: /\.(js|jsx)$/,
         include: paths.appSrc,
         loader: 'babel',
