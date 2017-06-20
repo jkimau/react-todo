@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { closeAllTodoMenus, setViewMode } from 'actions';
@@ -84,6 +85,11 @@ export class App extends Component {
     )
   }
 }
+
+App.propTypes = {
+  viewMode: PropTypes.string,
+  closeAllTodoMenus: PropTypes.func
+};
 
 const mapStateToProps = ({ todoState: { viewMode }}) => {
   return { viewMode }

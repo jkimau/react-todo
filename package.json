@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "15.4.0",
     "react-addons-css-transition-group": "^15.5.2",
     "react-dom": "15.5.0",
@@ -87,7 +88,10 @@
     "moduleNameMapper": {
       "^react-native$": "react-native-web"
     },
-    "modulePaths": ["<rootDir>/node_modules/", "<rootDir>/src/"]
+    "modulePaths": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/src/"
+    ]
   },
   "babel": {
     "presets": [
