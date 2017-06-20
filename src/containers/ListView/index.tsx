@@ -25,7 +25,19 @@ const TodoListWarpper = styled.div`
   border: 1px solid ${todoRowBorder};
 `;
 
-export class ListView extends Component {
+interface Todo {
+  id: number
+};
+
+export interface ListViewProps {
+  todos: Array<Todo>,
+  isFetching: boolean,
+  fetchTodos(): void,
+  setViewMode(mode: string): void,
+  toggleTodoMenu(id: number): void
+}
+
+export class ListView extends Component<ListViewProps, null> {
   componentDidMount() {
     if (!this.props.isFetching) {
       this.props.fetchTodos();

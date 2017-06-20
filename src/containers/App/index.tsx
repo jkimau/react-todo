@@ -35,7 +35,16 @@ const SearchInputWrapper = styled.div`
   height: ${topMenuHeight};
 `;
 
-export class App extends Component {
+export interface AppProps {
+  location: {
+    pathname: string
+  },
+  viewMode: string,
+  setViewMode(mode: string): void,
+  closeAllTodoMenus(): void
+}
+
+export class App extends Component<AppProps, undefined> {
   constructor(props) {
     super(props);
 
@@ -46,7 +55,7 @@ export class App extends Component {
     this.setInitialViewMode();
   }
 
-  changeViewModeHandler(mode) {
+  changeViewModeHandler(mode: string) {
     this.props.setViewMode(mode)
   }
 
