@@ -40,7 +40,7 @@ export interface AppPropTypes {
     pathname: string
   },
   viewMode: string,
-  setViewMode(): void,
+  setViewMode(mode): void,
   closeAllTodoMenus(): void,
   changeViewModeHandler(mode: string): void
 }
@@ -102,7 +102,7 @@ const mapStateToProps = ({ todoState: { viewMode }}) => {
 const mapDispatchToProps = dispatch => {
   return {
     closeAllTodoMenus: () => { dispatch(closeAllTodoMenus()) },
-    setViewMode: (mode) => { dispatch(setViewMode(mode)) }
+    setViewMode: (mode: string) => { dispatch(setViewMode(mode)) }
   }
 };
 

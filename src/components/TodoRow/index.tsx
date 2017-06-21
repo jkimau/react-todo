@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import { mainBG, todoRowBorder } from 'global/colors';
-import { TodoPropTypes } from 'propTypes';
+// import { TodoPropTypes } from 'propTypes';
 
 const padding = `15px`;
 
@@ -10,7 +10,7 @@ const TodoRowWrapper = styled.div`
   position: relative;
   background: white;
   border-bottom: 1px solid ${todoRowBorder};
-  color: ${props => props.completed ? '#ccc' : 'inherit'};
+  color: ${(props: {completed: boolean}) => props.completed ? '#ccc' : 'inherit'};
 
   &:last-child {
     border-bottom: none;
@@ -57,7 +57,7 @@ const TodoRowMenu = styled.ul`
 
   &.slide-leave {
     opacity: 1;
-    height: ${props => props.totalHeight ? `${props.totalHeight}px` : '100px'};
+    height: ${(props: StyledPropTypes) => props.totalHeight ? `${props.totalHeight}px` : '100px'};
     border: 1px solid #ddd;
     transition: all 0.05s ease;
   }
@@ -67,7 +67,7 @@ const TodoRowMenu = styled.ul`
   }
 
   li {
-    height: ${props => props.listHeight ? `${props.listHeight}px` : 'auto'};
+    height: ${(props: StyledPropTypes) => props.listHeight ? `${props.listHeight}px` : 'auto'};
     padding: 6px;
     box-sizing: border-box;
     text-align: center;
@@ -81,9 +81,24 @@ const TodoRowMenu = styled.ul`
   }
 `;
 
+interface StyledPropTypes {
+  className: string,
+  completed?: boolean,
+  listHeight?: number,
+  totalHeight?: number,
+  onClick(e: any): void
+}
+
 interface TodoRowPropTypes {
   key: number,
-  todo: TodoPropTypes,
+  todo: {
+    id: number,
+    title: string,
+    date: string,
+    details: string,
+    completed: boolean,
+    menuOpen: boolean
+  },
   toggleTodoMenu(id: number): void
 };
 

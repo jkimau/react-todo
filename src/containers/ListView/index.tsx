@@ -6,7 +6,7 @@ import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
 import { fetchTodos, setViewMode, toggleTodoMenu } from 'actions';
-import { TodoPropTypes } from 'propTypes';
+// import { TodoPropTypes } from 'propTypes';
 
 const ListViewWrapper = styled.div`
   height: 100%;
@@ -27,7 +27,14 @@ const TodoListWarpper = styled.div`
 `;
 
 export interface ListViewPropTypes {
-  todos: Array<TodoPropTypes>,
+  todos: Array<{
+    id: number,
+    title: string,
+    date: string,
+    details: string,
+    completed: boolean,
+    menuOpen: boolean
+  }>,
   isFetching: boolean,
   fetchTodos(): void,
   setViewMode(mode: string): void,
@@ -84,8 +91,8 @@ const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchTodos: () => dispatch(fetchTodos()),
-    setViewMode: (mode) => dispatch(setViewMode(mode)),
-    toggleTodoMenu: (id) => dispatch(toggleTodoMenu(id))
+    setViewMode: (mode: string) => dispatch(setViewMode(mode)),
+    toggleTodoMenu: (id: number) => dispatch(toggleTodoMenu(id))
   }
 };
 
