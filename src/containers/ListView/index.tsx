@@ -6,6 +6,7 @@ import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
 import { mainBG, todoRowBorder } from 'global/colors';
 import { fetchTodos, setViewMode, toggleTodoMenu } from 'actions';
+import { TodoPropTypes } from 'propTypes';
 
 const ListViewWrapper = styled.div`
   height: 100%;
@@ -25,19 +26,15 @@ const TodoListWarpper = styled.div`
   border: 1px solid ${todoRowBorder};
 `;
 
-interface Todo {
-  id: number
-};
-
-export interface ListViewProps {
-  todos: Array<Todo>,
+export interface ListViewPropTypes {
+  todos: Array<TodoPropTypes>,
   isFetching: boolean,
   fetchTodos(): void,
   setViewMode(mode: string): void,
   toggleTodoMenu(id: number): void
 }
 
-export class ListView extends Component<ListViewProps, null> {
+export class ListView extends Component<ListViewPropTypes, null> {
   componentDidMount() {
     if (!this.props.isFetching) {
       this.props.fetchTodos();

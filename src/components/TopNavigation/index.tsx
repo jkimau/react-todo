@@ -15,14 +15,19 @@ const List = styled.li`
   padding: 0 5px;
 `;
 
-export default class TopNavigation extends Component {
+interface TopNavigationPropTypes {
+  viewMode: string,
+  changeViewModeHandler(mode: string): void
+}
+
+export default class TopNavigation extends Component<TopNavigationPropTypes, null> {
   constructor(props) {
     super(props);
 
     this.changeViewMode = this.changeViewMode.bind(this);
   }
 
-  changeViewMode(mode) {
+  changeViewMode(mode: string) {
     this.props.changeViewModeHandler(mode);
   }
 

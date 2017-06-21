@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 
 import { mainBG, todoRowBorder } from 'global/colors';
+import { TodoPropTypes } from 'propTypes';
 
 const padding = `15px`;
 
@@ -80,7 +81,13 @@ const TodoRowMenu = styled.ul`
   }
 `;
 
-export default class TodoRow extends Component {
+interface TodoRowPropTypes {
+  key: number,
+  todo: TodoPropTypes,
+  toggleTodoMenu(id: number): void
+};
+
+export default class TodoRow extends Component<TodoRowPropTypes, null> {
   constructor(props) {
     super(props);
 
