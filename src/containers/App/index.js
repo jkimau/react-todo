@@ -92,8 +92,12 @@ export class App extends Component {
 }
 
 App.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string
+  }),
   viewMode: PropTypes.string,
-  closeAllTodoMenus: PropTypes.func
+  closeAllTodoMenus: PropTypes.func,
+  setViewMode: PropTypes.func
 };
 
 const mapStateToProps = ({ todoState: { viewMode }}) => {

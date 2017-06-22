@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
@@ -67,6 +68,14 @@ export class ListView extends Component {
     );
   }
 }
+
+ListView.propTypes = {
+  isFetching: PropTypes.bool,
+  todos: PropTypes.array,
+  fetchTodos: PropTypes.func,
+  setViewMode: PropTypes.func,
+  toggleTodoMenu: PropTypes.func,
+};
 
 const mapStateToProps = ({ todoState: { isFetching, todos }}) => {
   return { isFetching, todos }

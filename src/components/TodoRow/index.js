@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { mainBG, todoRowBorder } from 'global/colors';
 
@@ -129,3 +130,15 @@ export default class TodoRow extends Component {
     );
   }
 }
+
+TodoRow.propTypes = {
+  todo: PropTypes.shape({
+    id: PropTypes.number,
+    date: PropTypes.string,
+    title: PropTypes.string,
+    details: PropTypes.string,
+    completed: PropTypes.bool,
+    menuOpen: PropTypes.bool
+  }),
+  toggleTodoMenu: PropTypes.func
+};

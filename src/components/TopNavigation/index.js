@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { topMenuHeight } from 'global/variables';
 
@@ -59,3 +60,8 @@ export default class TopNavigation extends Component {
     )
   }
 }
+
+TopNavigation.propTypes = {
+  viewMode: PropTypes.string,
+  changeViewModeHandler: PropTypes.func
+};
