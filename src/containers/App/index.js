@@ -17,10 +17,14 @@ const TopMenuBar = styled.div`
   display: flex;
   height: ${topMenuHeight};
   border-bottom: 1px solid ${lightGreyBorder};
+  background: white;
+
+  >div {
+    width: 33.33%;
+  }
 `;
 
 const MainTitle = styled.div`
-  flex-grow: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -32,7 +36,6 @@ const SearchInputWrapper = styled.div`
   align-items: center;
   justify-content: flex-end;
   padding-right: 20px;
-  width: 33%;
   height: ${topMenuHeight};
 `;
 
@@ -68,10 +71,12 @@ export class App extends Component {
     return (
       <div className="app-container" onClick={this.documentClickHandler}>
         <TopMenuBar>
-          <TopNavigation
-            viewMode={this.props.viewMode}
-            changeViewModeHandler={this.changeViewModeHandler}
-          />
+          <div>
+            <TopNavigation
+              viewMode={this.props.viewMode}
+              changeViewModeHandler={this.changeViewModeHandler}
+            />
+          </div>
           <MainTitle>TODO</MainTitle>
           <SearchInputWrapper>
             <SearchInput />

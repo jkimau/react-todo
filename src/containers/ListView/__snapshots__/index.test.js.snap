@@ -1,6 +1,6 @@
 exports[`<ListView/> snapshot with no todos 1`] = `
 <div
-  className="cISMcw">
+  className="jjZMrb">
   <h1>
     List view page
   </h1>
@@ -16,14 +16,14 @@ exports[`<ListView/> snapshot with no todos 1`] = `
 
 exports[`<ListView/> snapshot with todos 1`] = `
 <div
-  className="cISMcw">
+  className="jjZMrb">
   <h1>
     List view page
   </h1>
   <div
     className="bxhHXa">
     <div
-      className="imZCSj">
+      className="cqDRAa">
       <div
         className="delrmX">
         <div

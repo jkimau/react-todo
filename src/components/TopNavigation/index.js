@@ -5,7 +5,6 @@ import styled from 'styled-components';
 import { topMenuHeight } from 'global/variables';
 
 const Nav = styled.nav`
-  width: 40%;
   height: ${topMenuHeight};
 `;
 

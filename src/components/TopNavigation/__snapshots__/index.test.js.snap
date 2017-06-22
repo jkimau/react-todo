@@ -1,6 +1,6 @@
 exports[`<TopNavigation/> snapshot - calendar viewMode 1`] = `
 <nav
-  className="fBEMhB">
+  className="irUjdh">
   <ul>
     <li
       className="gxaXoS">
@@ -38,7 +38,7 @@ exports[`<TopNavigation/> snapshot - calendar viewMode 1`] = `
 
 exports[`<TopNavigation/> snapshot - list viewMode 1`] = `
 <nav
-  className="fBEMhB">
+  className="irUjdh">
   <ul>
     <li
       className="gxaXoS">

@@ -1,16 +1,17 @@
 import { injectGlobal } from 'styled-components';
+import { mainBG } from 'global/colors';
 
 /* eslint no-unused-expressions: 0 */
 injectGlobal`
   body {
     margin: 0;
     padding: 0;
+    height: 100%;
     font-family: sans-serif;
     position: relative;
+    background: ${mainBG};
   }
 
-  html,
-  body,
   .root,
   .app-container {
     height: 100%;

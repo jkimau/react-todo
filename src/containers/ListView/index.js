@@ -4,13 +4,12 @@ import styled from 'styled-components';
 
 import TodoRow from 'components/TodoRow';
 import Loading from 'components/Loading';
-import { mainBG, todoRowBorder } from 'global/colors';
+import { todoRowBorder } from 'global/colors';
 import { fetchTodos, setViewMode, toggleTodoMenu } from 'actions';
 
 const ListViewWrapper = styled.div`
   height: 100%;
   padding-top: 40px;
-  background: ${mainBG};
 `;
 
 const ContentContainer = styled.div`
@@ -23,6 +22,7 @@ const ContentContainer = styled.div`
 
 const TodoListWarpper = styled.div`
   border: 1px solid ${todoRowBorder};
+  margin-bottom: 80px;
 `;
 
 export class ListView extends Component {
